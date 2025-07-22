@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My experiment</title>
+    <script src="https://unpkg.com/jspsych@8.2.1"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-multi-choice@1.1.3"></script>
+    <link href="./jspsych.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body></body>
+  <script>
+    // variable to initialize jsPsych//
+    var jsPsych = initJsPsych();
+
+    //create timeline//
+    var timeline = [];
+
+    //define welcome message//
+    var welcome = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: "Welcome to the experiment. Press any key to begin."
+    };
+    timeline.push(welcome);
+
+    //*start the experiment//
+    jsPsych.run(timeline);
+
+    //define instructions//
+    var intro = {
+      type:jsPsychHtmlKeyboardResponse,
+      stimulus: `
+        <p>We are designing games that scientists can use to study visual attention.</p>
+        <p>Our goal is to make the games as immersive and engaging as possible.<br>
+        To make the games as immersive and engaging as possible, we are getting feedback from people like you.
+        </p><p>Press any key to continue.</p>
+      
+      `,
+    };
+    timeline.push(intro);
+
+    var description = {
+        type:jsPsychHtmlKeyboardResponse,
+        stimulus: `
+            <p>You will be playing a game where you'll be competing for a chance to win a $100.00 bonus prize.</p>
+            <p>Specifically, during the game, you'll earn tokens. The tokens you earn will be entered into a lottery,<br>
+            and if one of your tokens is drawn, you'll win $100.00. The more tokens you earn, the more likely you will be to win $100.00.</p>
+            <p>Press any key to continue to learn about and play the game.</p>
+
+        `,
+
+    };
+    timeline.push(description);
+
+    var instructions1 = {
+        type:jsPsychHtmlKeyboardResponse,
+        stimulus: `
+            <p>The game you will play involves activating a grey tile.</p>
+            <div class="outcome-container">
+                <div class="tile"></div>
+            </div>
+            <p>The tile will appear on your screen, then quickly disappear. To activate it, you must press your SPACEBAR
+            before it disappears;<br>whenever you see the tile, you should press your SPACEBAR as fast as possible.</p>
+            <p>To get a feel for the game, you'll complete a practice session with 10 rounds of tiles.</p>
+            <p>Once you proceed, the practice session will start, so get ready to press your SPACEBAR.</p>
+            <p> </p>
+            <p>Press any key to continue.</p>
+
+        `,
+    };
+    timeline.push(instructions1);
+
+    var instructions2 = {
+        type:jsPsychHtmlKeyboardResponse,
+        stimulus: `
+            <p>If you successfully activate the tile, you will see this message.</p>
+            <div class="outcome-container">
+                <div class="bonus-text">+10 points</div>
+            </div>
+            <p>Press any key to continue.</p>
+
+        `,
+    };
+    timeline.push(instructions2);
+    
+    // Insert TILE practice game //
+
+
+    var intro_representations = {
+        type:jsPsychHtmlKeyboardResponse,
+        stimulus: `
+            <p>Now, you must choose one game to play from the three options below:</p>
+            <p>1. One-Click Wonder</p>
+            <p>2. Streak-O-Rama</p>
+            <p>3. Shot in Six</p>
+            <p>You will learn about each game in the following pages. Click any key to advance.</p>
+
+
+        `,
+    }
+    timeline.push(intro_representations);
+
+    var binary = {
+        type:jsPsychHtmlKeyboardResponse,
+        stimulus: `
+            <p><strong>One-Click Wonder</strong></p>
+            <p>+10 tokens each time you successfully hit the tile.</p>
+            <p>+0 tokens each time you miss the tile.</p>
+            <p>10 rounds</p>
+            <p>Press any key to continue.</p>
+
+        `,
+
+    }
+    timeline.push(binary);
+
+    var streak = {
+        type:jsPsychHtmlKeyboardResponse,
+        stimulus: `
+            <p><strong>Streak-O-Rama</strong></p>
+            <p>+10 tokens for each additional consecutive hit.</p>
+            <p>10 rounds to get the highest streak possible.</p>
+            <p>When you lose your streak, your streak number restarts at 0, but you do not lose your tokens.</p>
+            <p>Press any key to continue.</p>
+
+        `,
+
+    }
+    timeline.push(streak);
+
+    var onein6 = {
+        type:jsPsychHtmlKeyboardResponse,
+        stimulus: `
+            <p><strong>Shot in Six</strong></p>
+            <p>+10 tokens every time you can hit 1 tile per every 6 tiles.</p>
+            <p>For example, if N=6, you get +10 tokens each time you can hit 1 tile per 6 tries.<br> 
+            If you hit it in less than 6 tries, you get +10 tokens and the round restarts.<br>If you do not hit it in 6 tries, you get +0 tokens.</p>
+            <p>Press any key to continue.</p>
+
+        `,
+    }
+    timeline.push(onein6);
+
+    //quiz on representations -- UNFINISHED//
+
+    var quiz_binary = {
+        type:jsPsychSurveyMultiChoice,
+        preamble: "<p>To make sure you understand the One-Click Wonder game, please answer the following questions:",
+        questions: [
+            {
+                prompt: "What must you do to maximize your odds of winning a $100.00 bonus?",
+                name: "binaryq1",
+                options: ["Earn as many tokens as possible.", "Finish the game as quickly as possible."],
+                required: true
+
+            },
+            {
+                prompt: "How do you earn tokens in One-Click Wonder?",
+                name: "binaryq2",
+                options: ["By activating each individual tile.", "By building streaks."],
+                required: true
+
+            }
+
+        ]
+
+    };
+    timeline.push(quiz_binary)
+
+    var quiz_streak = {
+        type:jsPsychSurveyMultiChoice,
+        preamble: "<p>To make sure you understand the Streak-O-Rama game, please answer the following questions:",
+        questions: [
+            {
+                prompt: "How do you earn tokens in Streak-O-Rama?",
+                name: "streakq1",
+                options: ["By activating each individual tile.", "By building streaks."],
+                required: true
+
+            },
+            {
+                prompt: "What happens if you lose your streak?",
+                name: "streakq2",
+                options: ["You lose all your tokens and restart from 0.", "You do not lose any tokens."],
+                required: true
+
+            }
+
+        ]
+
+    };
+    timeline.push(quiz_streak)
+
+    var quiz_onein6 = {
+        type:jsPsychSurveyMultiChoice,
+        preamble: "<p>To make sure you understand the Shot in Six game, please answer the following questions:",
+        questions: [
+            {
+                prompt: "How do you earn tokens in Shot in Six?",
+                name: "onein6q1",
+                options: ["By hitting exactly 6 tiles the entire game.", "By hitting 1 tile in 6 or less tries."],
+                required: true
+
+            },
+            {
+                prompt: "If you hit a tile in 4 tries, what happens?",
+                name: "onein6q2",
+                options: ["You continue to 6 tries.", "The round restarts at try 1."],
+                required: true
+
+            }
+
+        ]
+
+    };
+    timeline.push(quiz_onein6)
+
+    //pick a representation//
+    
+    var choose_rep = {
+        type:jsPsychSurveyMultiChoice,
+        questions: [
+            {
+                prompt: "Which game would you like to play?",
+                name: "format",
+                options: ["One-Click Wonder", "Streak-O-Rama", "Shot in Six"],
+                required: true
+
+            }
+
+        ]
+
+    };
+    timeline.push(choose_rep)
+
+    //insert REAL game//
+
+
+  </script>
+</html>
