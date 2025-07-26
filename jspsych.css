@@ -529,13 +529,19 @@
     margin: 20px 0; /* optional spacing */
 }
 
-.tile {
+.blue-tile {
     width: 200px;
     height: 200px;
     background-color: blue;
 }
 
-.bonus-text {
+.gray-tile {
+    width: 200px;
+    height: 200px;
+    background-color: lightgray;
+}
+
+.win-text {
     font-size: 48px;
     color: green;
     text-shadow: 1px 1px 2px black; /* subtle black outline */
@@ -544,8 +550,36 @@
     margin-bottom: 50px;
 }
 
+.lose-text {
+    font-size: 48px;
+    color: darkgray;
+    text-shadow: 1px 1px 2px black; /* subtle black outline */
+    font-weight: bold;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
 
+.status-text {
+    font-size: 24px;
+    color: #333;
+    font-weight: 600;
+    margin: 10px 0;
+}
 
+.game-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f8f9fa; /* light grey */
+    color: #333;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    z-index: 1000;
+}
 
 
 
