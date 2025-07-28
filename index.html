@@ -110,9 +110,11 @@
         type:jsPsychHtmlKeyboardResponse,
         stimulus: `
             <p>You will choose one of three tile-based games to play.</p>
-            <p>1. One-Click Wonder</p>
-            <p>2. Streak-O-Rama</p>
-            <p>3. Six Shooter</p>
+            <div class="outcome-container">
+                <p>1. One-Click Wonder</p>
+                <p>2. Streak-O-Rama</p>
+                <p>3. Six Shooter</p>
+            </div>
             <p>You will learn about each game in the following pages. Click any key to advance.</p>
 
         `,
@@ -126,9 +128,11 @@
     var binary1 = {
         type:jsPsychHtmlKeyboardResponse,
         stimulus: `
-            <p><strong>One-Click Wonder</strong></p>
-            <p>Your goal is to activate each individual tile.</p>
-            <p>Press any key to continue.</p>
+            <div class="heading">One-Click Wonder</div>
+            <div class="outcome-container">
+                <p>Your goal is to activate each individual tile.</p>
+                <p>Press any key to continue.</p>
+            </div>
 
         `,
 
@@ -180,9 +184,11 @@
     var streak1 = {
         type:jsPsychHtmlKeyboardResponse,
         stimulus: `
-            <p><strong>Streak-O-Rama</strong></p>
-            <p>Your goal is to build streaks of consecutive successful tile hits.</p>
-            <p>Press any key to continue.</p>
+            <div class="heading">Streak-O-Rama</div>
+            <div class="outcome-container">
+                <p>Your goal is to build streaks of consecutive successful tile hits.</p>
+                <p>Press any key to continue.</p>
+            </div>
 
         `,
 
@@ -236,12 +242,14 @@
     var oneinsix1 = {
         type:jsPsychHtmlKeyboardResponse,
         stimulus: `
-            <p><strong>Six Shooter</strong></p>
-            <p>Six Shooter is divided into rounds of 6 attempts.</p>
-            <p>Your goal is to win rounds.</p>
-            <p>To win a round, you must activate a tile before your six attempts are complete.</p>
-            <p>Press any key to continue.</p>
-
+            <div class="heading">Six Shooter</div>
+            <div class="outcome-container">
+                <p>Six Shooter is divided into rounds of 6 attempts.</p>
+                <p>Your goal is to win rounds.</p>
+                <p>To win a round, you must activate a tile before your six attempts are complete.</p>
+                <p>Press any key to continue.</p>
+            </div>
+            
         `,
     }
     timeline.push(oneinsix1);

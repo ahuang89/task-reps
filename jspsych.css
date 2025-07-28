@@ -548,7 +548,7 @@
     color: green;
     text-shadow: 1px 1px 2px black; /* subtle black outline */
     font-weight: bold;
-    margin: 10px 0;
+    margin: 15px 0;
     text-align: center;
 }
 
@@ -557,7 +557,7 @@
     color: darkgray;
     text-shadow: 1px 1px 2px black; /* subtle black outline */
     font-weight: bold;
-    margin: 10px 0;
+    margin: 15px 0;
     text-align: center;
 }
 
@@ -565,7 +565,7 @@
     font-size: 24px;
     color: #333;
     font-weight: 600;
-    margin: 10px 0;
+    margin: 15px 0;
     text-align: center;
 }
 
@@ -583,5 +583,11 @@
     z-index: 1000;
 }
 
-
+.heading {
+    font-size: 32px;
+    color: #333;
+    font-weight: 600;
+    margin: 30px 0;
+    text-align: center;
+}
 
