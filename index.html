@@ -177,36 +177,116 @@
     //STREAK-O-RAMA//
 
 
-    var streak = {
+    var streak1 = {
         type:jsPsychHtmlKeyboardResponse,
         stimulus: `
             <p><strong>Streak-O-Rama</strong></p>
-            <p>+10 tokens for each additional consecutive hit.</p>
-            <p>10 rounds to get the highest streak possible.</p>
-            <p>When you lose your streak, your streak number restarts at 0, but you do not lose your tokens.</p>
+            <p>Your goal is to build streaks of consecutive successful tile hits.</p>
             <p>Press any key to continue.</p>
 
         `,
 
     }
-    timeline.push(streak);
+    timeline.push(streak1);
+
+    var streak2 = {
+        type:jsPsychHtmlKeyboardResponse,
+        stimulus: `
+            <div class ="game-header">Streak-O-Rama</div>
+            <p>After a successful hit, you’ll see the length of your current streak.</p>
+            <p>For instance, if you’ve activated the tile 3 times in a row, you'll see this message:</p>
+            <div class ="outcome-container">
+                <div class="status-text">Streak: 3</div>
+            </div>
+
+        `,
+
+    }
+    timeline.push(streak2);
+
+    var streak3 = {
+        type:jsPsychHtmlKeyboardResponse,
+        stimulus: `
+            <div class ="game-header">Streak-O-Rama</div>
+            <p>You'll earn 10 tokens for every consecutive tile you hit.</p>
+            <p>For instance, if you miss the tile after achieving a streak of 3, you'll see this message indicating that you earned 30 tokens:</p>
+            <div class ="outcome-container">
+                <div class="status-text">Final streak: 3</div>
+                <div class="win-text">+30 tokens</div>
+            </div>
+
+        `,
+
+    }
+    timeline.push(streak3);
+
+    var streak4 = {
+        type:jsPsychHtmlKeyboardResponse,
+        stimulus: `
+            <p>Press any key to continue.</p>
+        `,
+
+    }
+    timeline.push(streak4);
 
 
     //SIX SHOOTER//
 
 
-    var onein6 = {
+    var oneinsix1 = {
         type:jsPsychHtmlKeyboardResponse,
         stimulus: `
-            <p><strong>Shot in Six</strong></p>
-            <p>+10 tokens every time you can hit 1 tile per every 6 tiles.</p>
-            <p>For example, if N=6, you get +10 tokens each time you can hit 1 tile per 6 tries.<br> 
-            If you hit it in less than 6 tries, you get +10 tokens and the round restarts.<br>If you do not hit it in 6 tries, you get +0 tokens.</p>
+            <p><strong>Six Shooter</strong></p>
+            <p>Six Shooter is divided into rounds of 6 attempts.</p>
+            <p>Your goal is to win rounds.</p>
+            <p>To win a round, you must activate a tile before your six attempts are complete.</p>
             <p>Press any key to continue.</p>
 
         `,
     }
-    timeline.push(onein6);
+    timeline.push(oneinsix1);
+
+    var oneinsix2 = {
+        type:jsPsychHtmlKeyboardResponse,
+        stimulus: `
+            <div class ="game-header">Six Shooter</div>
+            <p>If you successfully hit a tile during the round, you will see this message indicating you won the round:</p>
+            <div class ="outcome-container">
+                <div class="win-text">+10 tokens</div>
+                <div class="status-text">Get ready for the next round!</div>
+            </div>
+
+        `,
+    }
+    timeline.push(oneinsix2);
+
+    var oneinsix2 = {
+        type:jsPsychHtmlKeyboardResponse,
+        stimulus: `
+            <div class ="game-header">Six Shooter</div>
+            <p>Each time you fail to hit a tile within a round, you will see a message indicating how many attempts are remaining:</p>
+            <div class ="outcome-container">
+                <div class="status-text">Attempts remaining: 3</div>
+            </div>
+
+        `,
+    }
+    timeline.push(oneinsix2);
+
+    var oneinsix3 = {
+        type:jsPsychHtmlKeyboardResponse,
+        stimulus: `
+            <div class ="game-header">Six Shooter</div>
+            <p>If you fail to hit a tile in six attempts, you will see this message indicating you lost the round:</p>
+            <div class ="outcome-container">
+                <div class="lose-text">+0 tokens</div>
+                <div class="status-text">Get ready for the next round!</div>
+            </div>
+
+        `,
+    }
+    timeline.push(oneinsix3);
+
 
     //quiz on representations -- UNFINISHED//
 
