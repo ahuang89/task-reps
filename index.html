@@ -4,6 +4,7 @@
     <title>My experiment</title>
     <script src="https://unpkg.com/jspsych@8.2.1"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-instructions@1.1.4"></script>
     <script src="https://unpkg.com/@jspsych/plugin-survey-multi-choice@1.1.3"></script>
     <link href="./jspsych.css" rel="stylesheet" type="text/css" />
   </head>
@@ -17,283 +18,166 @@
 
     //define welcome message//
     var welcome = {
-      type: jsPsychHtmlKeyboardResponse,
-      stimulus: "Welcome to the experiment. Press any key to begin."
+      type: jsPsychInstructions,
+      pages: [
+        `<p>Welcome to the experiment. Click below to continue.</p>`
+      ],
+      show_clickable_nav: true
     };
     timeline.push(welcome);
 
-    //*start the experiment//
-    jsPsych.run(timeline);
-
-    //define instructions//
-    var intro = {
-      type:jsPsychHtmlKeyboardResponse,
-      stimulus: `
-        <p>We are designing games that scientists can use to study visual attention.</p>
+    //tile activation instructions//
+    var tile_intro = {
+        type:jsPsychInstructions,
+        pages: [
+        //intro//
+        `<p>We are designing games that scientists can use to study visual attention.</p>
         <p>Our goal is to make the games as immersive and engaging as possible.<br>
-        To do so, we are getting feedback from people like you.
-        </p><p>Press any key to continue.</p>
+        To do so, we are getting feedback from people like you.</p>`,
+
+        //description//
+        `<p>You'll be playing a game where you'll be competing for a chance to win a $100.00 bonus prize.</p>
+        <p>Specifically, during the game, you'll earn tokens. The tokens you earn will be entered into a lottery,<br>
+        and if one of your tokens is drawn, you'll win $100.00. The more tokens you earn, the more likely you'll be to win $100.00.</p>`,
+
+        //instructions 1//
+        `<p>The game you will play involves activating a gray tile.</p>
+        <div class="outcome-container">
+            <div class="gray-tile"></div>
+        </div>
+        <p>The tile will appear on your screen, then quickly disappear. To activate it, you must press your SPACEBAR
+        before it disappears;<br>whenever you see the tile, you should press your SPACEBAR as fast as possible.</p>`,
+
+        //instructions 2//
+        `<p>If you successfully activate the tile, it will turn blue.</p>
+        <div class="outcome-container">
+            <div class="blue-tile"></div>
+        </div>
+        <p>Press any key to continue.</p>`,
+
+        //instructions 3//
+        `<p>If you fail to activate the tile, it will disappear.</p>
+        <div class="outcome-container">
+        </div>
+        <p>Press any key to continue.</p>`,
+
+        //instructions 4//
+        `<p>To get a feel for activating the tile, you'll complete a practice session with 10 rounds of tiles.</p>
+        <p>Once you proceed, the practice session will start, so get ready to press your SPACEBAR.</p>
+        <p>Press any key to continue.</p>`,
       
-      `,
+        ],
+        show_clickable_nav: true
     };
-    timeline.push(intro);
-
-    var description = {
-        type:jsPsychHtmlKeyboardResponse,
-        stimulus: `
-            <p>You'll be playing a game where you'll be competing for a chance to win a $100.00 bonus prize.</p>
-            <p>Specifically, during the game, you'll earn tokens. The tokens you earn will be entered into a lottery,<br>
-            and if one of your tokens is drawn, you'll win $100.00. The more tokens you earn, the more likely you'll be to win $100.00.</p>
-            <p>Press any key to continue to learn about and play the game.</p>
-
-        `,
-
-    };
-    timeline.push(description);
-
-    var instructions1 = {
-        type:jsPsychHtmlKeyboardResponse,
-        stimulus: `
-            <p>The game you will play involves activating a gray tile.</p>
-            <div class="outcome-container">
-                <div class="gray-tile"></div>
-            </div>
-            <p>The tile will appear on your screen, then quickly disappear. To activate it, you must press your SPACEBAR
-            before it disappears;<br>whenever you see the tile, you should press your SPACEBAR as fast as possible.</p>
-            <p>Press any key to continue.</p>
-
-        `,
-    };
-    timeline.push(instructions1);
-
-    var instructions2 = {
-        type:jsPsychHtmlKeyboardResponse,
-        stimulus: `
-            <p>If you successfully activate the tile, it will turn blue.</p>
-            <div class="outcome-container">
-                <div class="blue-tile"></div>
-            </div>
-            <p>Press any key to continue.</p>
-
-        `,
-    };
-    timeline.push(instructions2);
-
-    var instructions3 = {
-        type:jsPsychHtmlKeyboardResponse,
-        stimulus: `
-            <p>If you fail to activate the tile, it will disappear.</p>
-            <div class="outcome-container">
-            </div>
-            <p>Press any key to continue.</p>
-
-        `,
-    };
-    timeline.push(instructions3);
-
-    var instructions4 = {
-        type:jsPsychHtmlKeyboardResponse,
-        stimulus: `
-            <p>To get a feel for activating the tile, you'll complete a practice session with 10 rounds of tiles.</p>
-            <p>Once you proceed, the practice session will start, so get ready to press your SPACEBAR.</p>
-            <p>Press any key to continue.</p>
-
-        `,
-    };
-    timeline.push(instructions4);
+    timeline.push(tile_intro);
     
     
-    // Insert TILE practice game //
+    // Insert tile PRACTICE game //
 
 
-    var intro_representations = {
-        type:jsPsychHtmlKeyboardResponse,
-        stimulus: `
-            <p>You will choose one of three tile-based games to play.</p>
-            <div class="outcome-container">
-                <p>1. One-Click Wonder</p>
-                <p>2. Streak-O-Rama</p>
-                <p>3. Six Shooter</p>
-            </div>
-            <p>You will learn about each game in the following pages. Click any key to advance.</p>
+    var games = {
+        type:jsPsychInstructions,
+        pages: [
+        //intro games//
+        `<p>You will choose one of three tile-based games to play.</p>
+        <div class="outcome-container">
+            <p>1. One-Click Wonder</p>
+            <p>2. Streak-O-Rama</p>
+            <p>3. Six Shooter</p>
+        </div>
+        <p>You will learn about each game in the following pages. Click any key to advance.</p>`,
 
-        `,
-    }
-    timeline.push(intro_representations);
-
-    
-    //ONE-CLICK WONDER//
-
-
-    var binary1 = {
-        type:jsPsychHtmlKeyboardResponse,
-        stimulus: `
-            <div class="heading">One-Click Wonder</div>
-            <div class="outcome-container">
-                <p>Your goal is to activate each individual tile.</p>
-                <p>Press any key to continue.</p>
-            </div>
-
-        `,
-
-    }
-    timeline.push(binary1);
-
-    var binary2 = {
-        type:jsPsychHtmlKeyboardResponse,
-        stimulus: `
-            <div class ="game-header">One-Click Wonder</div>
-            <p>Each time you successfully hit the tile you'll see this message:</p>
-            <div class ="outcome-container">
-                <div class ="win-text">+10 tokens</div>
-            </div>
-
-        `,
-
-    }
-    timeline.push(binary2);
-
-    var binary3 = {
-        type:jsPsychHtmlKeyboardResponse,
-        stimulus: `
-            <div class ="game-header">One-Click Wonder</div>
-            <p>Each time you fail to hit the tile you'll see this message:</p>
-            <div class ="outcome-container">
-                <div class ="lose-text">+0 tokens</div>
-            </div>
-
-        `,
-
-    }
-    timeline.push(binary3);
-
-    var binary4 = {
-        type:jsPsychHtmlKeyboardResponse,
-        stimulus: `
+        //binary 1//
+        `<div class="heading">One-Click Wonder</div>
+        <div class="outcome-container">
+            <p>Your goal is to activate each individual tile.</p>
             <p>Press any key to continue.</p>
+        </div>`,
 
-        `,
+        //binary 2//
+        `<div class ="game-header">One-Click Wonder</div>
+        <p>Each time you successfully hit the tile you'll see this message:</p>
+        <div class ="outcome-container">
+            <div class ="win-text">+10 tokens</div>
+        </div>`,
 
-    }
-    timeline.push(binary4);
+        //binary 3//
+        `<div class ="game-header">One-Click Wonder</div>
+        <p>Each time you fail to hit the tile you'll see this message:</p>
+        <div class ="outcome-container">
+            <div class ="lose-text">+0 tokens</div>
+        </div>`,
+
+        //divider//
+        `<p>Continue to learn about the rules of Streak-O-Rama</p>`,
 
 
-    //STREAK-O-RAMA//
-
-
-    var streak1 = {
-        type:jsPsychHtmlKeyboardResponse,
-        stimulus: `
-            <div class="heading">Streak-O-Rama</div>
-            <div class="outcome-container">
-                <p>Your goal is to build streaks of consecutive successful tile hits.</p>
-                <p>Press any key to continue.</p>
-            </div>
-
-        `,
-
-    }
-    timeline.push(streak1);
-
-    var streak2 = {
-        type:jsPsychHtmlKeyboardResponse,
-        stimulus: `
-            <div class ="game-header">Streak-O-Rama</div>
-            <p>After a successful hit, you’ll see the length of your current streak.</p>
-            <p>For instance, if you’ve activated the tile 3 times in a row, you'll see this message:</p>
-            <div class ="outcome-container">
-                <div class="status-text">Streak: 3</div>
-            </div>
-
-        `,
-
-    }
-    timeline.push(streak2);
-
-    var streak3 = {
-        type:jsPsychHtmlKeyboardResponse,
-        stimulus: `
-            <div class ="game-header">Streak-O-Rama</div>
-            <p>You'll earn 10 tokens for every consecutive tile you hit.</p>
-            <p>For instance, if you miss the tile after achieving a streak of 3, you'll see this message indicating that you earned 30 tokens:</p>
-            <div class ="outcome-container">
-                <div class="status-text">Final streak: 3</div>
-                <div class="win-text">+30 tokens</div>
-            </div>
-
-        `,
-
-    }
-    timeline.push(streak3);
-
-    var streak4 = {
-        type:jsPsychHtmlKeyboardResponse,
-        stimulus: `
+        //streak 1//
+        `<div class="heading">Streak-O-Rama</div>
+        <div class="outcome-container">
+            <p>Your goal is to build streaks of consecutive successful tile hits.</p>
             <p>Press any key to continue.</p>
-        `,
+        </div>`,
 
-    }
-    timeline.push(streak4);
+        //streak 2//
+        `<div class ="game-header">Streak-O-Rama</div>
+        <p>After a successful hit, you’ll see the length of your current streak.</p>
+        <p>For instance, if you’ve activated the tile 3 times in a row, you'll see this message:</p>
+        <div class ="outcome-container">
+            <div class="status-text">Streak: 3</div>
+        </div>`,
+
+        //streak 3//
+        `<div class ="game-header">Streak-O-Rama</div>
+        <p>You'll earn 10 tokens for every consecutive tile you hit.</p>
+        <p>For instance, if you miss the tile after achieving a streak of 3, you'll see this message indicating that you earned 30 tokens:</p>
+        <div class ="outcome-container">
+            <div class="status-text">Final streak: 3</div>
+            <div class="win-text">+30 tokens</div>
+        </div>`,
+
+        //divider//
+        `<p>Continue to learn about the rules of Six Shooter</p>`,
 
 
-    //SIX SHOOTER//
+        //one in six 1//
+        `<div class="heading">Six Shooter</div>
+        <div class="outcome-container">
+            <p>Six Shooter is divided into rounds of 6 attempts.</p>
+            <p>Your goal is to win rounds.</p>
+            <p>To win a round, you must activate a tile before your six attempts are complete.</p>
+            <p>Press any key to continue.</p>
+        </div>`,
+
+        //one in six 2//
+        `<div class ="game-header">Six Shooter</div>
+        <p>If you successfully hit a tile during the round, you will see this message indicating you won the round:</p>
+        <div class ="outcome-container">
+            <div class="win-text">+10 tokens</div>
+            <div class="status-text">Get ready for the next round!</div>
+        </div>`,
+
+        //one in six 3//
+        `<div class ="game-header">Six Shooter</div>
+        <p>Each time you fail to hit a tile within a round, you will see a message indicating how many attempts are remaining:</p>
+        <div class ="outcome-container">
+            <div class="status-text">Attempts remaining: 3</div>
+        </div>`,
+
+        //one in six 4//
+        `<div class ="game-header">Six Shooter</div>
+        <p>If you fail to hit a tile in six attempts, you will see this message indicating you lost the round:</p>
+        <div class ="outcome-container">
+            <div class="lose-text">+0 tokens</div>
+            <div class="status-text">Get ready for the next round!</div>
+        </div>`,
+
+        ],
+        show_clickable_nav: true
+    };
+    timeline.push(games);
 
 
-    var oneinsix1 = {
-        type:jsPsychHtmlKeyboardResponse,
-        stimulus: `
-            <div class="heading">Six Shooter</div>
-            <div class="outcome-container">
-                <p>Six Shooter is divided into rounds of 6 attempts.</p>
-                <p>Your goal is to win rounds.</p>
-                <p>To win a round, you must activate a tile before your six attempts are complete.</p>
-                <p>Press any key to continue.</p>
-            </div>
-            
-        `,
-    }
-    timeline.push(oneinsix1);
-
-    var oneinsix2 = {
-        type:jsPsychHtmlKeyboardResponse,
-        stimulus: `
-            <div class ="game-header">Six Shooter</div>
-            <p>If you successfully hit a tile during the round, you will see this message indicating you won the round:</p>
-            <div class ="outcome-container">
-                <div class="win-text">+10 tokens</div>
-                <div class="status-text">Get ready for the next round!</div>
-            </div>
-
-        `,
-    }
-    timeline.push(oneinsix2);
-
-    var oneinsix2 = {
-        type:jsPsychHtmlKeyboardResponse,
-        stimulus: `
-            <div class ="game-header">Six Shooter</div>
-            <p>Each time you fail to hit a tile within a round, you will see a message indicating how many attempts are remaining:</p>
-            <div class ="outcome-container">
-                <div class="status-text">Attempts remaining: 3</div>
-            </div>
-
-        `,
-    }
-    timeline.push(oneinsix2);
-
-    var oneinsix3 = {
-        type:jsPsychHtmlKeyboardResponse,
-        stimulus: `
-            <div class ="game-header">Six Shooter</div>
-            <p>If you fail to hit a tile in six attempts, you will see this message indicating you lost the round:</p>
-            <div class ="outcome-container">
-                <div class="lose-text">+0 tokens</div>
-                <div class="status-text">Get ready for the next round!</div>
-            </div>
-
-        `,
-    }
-    timeline.push(oneinsix3);
 
 
     //quiz on representations -- UNFINISHED//
@@ -390,6 +274,9 @@
 
     //insert REAL game//
 
+
+    //*start the experiment//
+    jsPsych.run(timeline);
 
   </script>
 </html>
