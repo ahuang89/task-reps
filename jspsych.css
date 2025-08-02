@@ -569,6 +569,14 @@
     text-align: center;
 }
 
+.status-text-red {
+    font-size: 24px;
+    color: red;
+    font-weight: 600;
+    margin: 15px 0;
+    text-align: center;
+}
+
 .game-header {
     position: fixed;
     top: 0;
@@ -577,14 +585,16 @@
     background-color: #f8f9fa; /* light grey */
     color: #333;
     padding: 10px 20px;
-    font-size: 18px;
+    font-size: 24px;
+    font-weight: bold;
     text-align: center;
+    margin-top: 80px;
     border-bottom: 0px solid #ccc;
     z-index: 1000;
 }
 
 .heading {
-    font-size: 32px;
+    font-size: 24px;
     color: #333;
     font-weight: 600;
     margin: 30px 0;

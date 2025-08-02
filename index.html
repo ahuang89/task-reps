@@ -6,6 +6,7 @@
     <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.1.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-instructions@1.1.4"></script>
     <script src="https://unpkg.com/@jspsych/plugin-survey-multi-choice@1.1.3"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@2.1.0"></script>
     <link href="./jspsych.css" rel="stylesheet" type="text/css" />
   </head>
   <body></body>
@@ -41,7 +42,7 @@
         and if one of your tokens is drawn, you'll win $100.00. The more tokens you earn, the more likely you'll be to win $100.00.</p>`,
 
         //instructions 1//
-        `<p>The game you will play involves activating a gray tile.</p>
+        `<p>The game you'll play involves activating a gray tile.</p>
         <div class="outcome-container">
             <div class="gray-tile"></div>
         </div>
@@ -49,22 +50,19 @@
         before it disappears;<br>whenever you see the tile, you should press your SPACEBAR as fast as possible.</p>`,
 
         //instructions 2//
-        `<p>If you successfully activate the tile, it will turn blue.</p>
+        `<p>If you activate the tile, it'll turn blue.</p>
         <div class="outcome-container">
             <div class="blue-tile"></div>
-        </div>
-        <p>Press any key to continue.</p>`,
+        </div>`,
 
         //instructions 3//
-        `<p>If you fail to activate the tile, it will disappear.</p>
+        `<p>If you fail to activate the tile, it'll disappear.</p>
         <div class="outcome-container">
-        </div>
-        <p>Press any key to continue.</p>`,
+        </div>`,
 
         //instructions 4//
         `<p>To get a feel for activating the tile, you'll complete a practice session with 10 rounds of tiles.</p>
-        <p>Once you proceed, the practice session will start, so get ready to press your SPACEBAR.</p>
-        <p>Press any key to continue.</p>`,
+        <p>Once you proceed, the practice session will start, so get ready to press your SPACEBAR.</p>`,
       
         ],
         show_clickable_nav: true
@@ -79,95 +77,113 @@
         type:jsPsychInstructions,
         pages: [
         //intro games//
-        `<p>You will choose one of three tile-based games to play.</p>
-        <div class="outcome-container">
-            <p>1. One-Click Wonder</p>
-            <p>2. Streak-O-Rama</p>
-            <p>3. Six Shooter</p>
-        </div>
-        <p>You will learn about each game in the following pages. Click any key to advance.</p>`,
+        `<p>You'll play one of three different games. Each game involves activating the tile but with different rules. The games are:</p>
+            <div class="heading">
+                <p>1. One-Click Wonder</p>
+                <p>2. Streak-O-Rama</p>
+                <p>3. Six Shooter</p>
+            </div>
+        <p>You'll learn about each game in the following pages.</p>`,
 
         //binary 1//
-        `<div class="heading">One-Click Wonder</div>
+        `<div class="game-header">One-Click Wonder Rules</div>
         <div class="outcome-container">
-            <p>Your goal is to activate each individual tile.</p>
-            <p>Press any key to continue.</p>
+            <p>In <strong>One-Click Wonder</strong>, the goal is to activate each individual tile.</p>
+            <p>Each time you activate the tile you get +10 tokens.</p>
+            <p>Each time you miss the tile you get +0 tokens.</p>
         </div>`,
 
         //binary 2//
-        `<div class ="game-header">One-Click Wonder</div>
-        <p>Each time you successfully hit the tile you'll see this message:</p>
+        `<div class ="game-header">One-Click Wonder Rules</div>
+        <p>Each time you activate the tile you'll see this message:</p>
         <div class ="outcome-container">
             <div class ="win-text">+10 tokens</div>
         </div>`,
 
         //binary 3//
-        `<div class ="game-header">One-Click Wonder</div>
-        <p>Each time you fail to hit the tile you'll see this message:</p>
+        `<div class ="game-header">One-Click Wonder Rules</div>
+        <p>Each time you miss the tile you'll see this message:</p>
         <div class ="outcome-container">
             <div class ="lose-text">+0 tokens</div>
         </div>`,
 
         //divider//
-        `<p>Continue to learn about the rules of Streak-O-Rama</p>`,
+        `<p>Continue to learn about the rules of <strong>Streak-O-Rama</strong></p>`,
 
 
         //streak 1//
-        `<div class="heading">Streak-O-Rama</div>
+        `<div class="game-header">Streak-O-Rama Rules</div>
         <div class="outcome-container">
-            <p>Your goal is to build streaks of consecutive successful tile hits.</p>
-            <p>Press any key to continue.</p>
+            <p>In <strong>Streak-O-Rama</strong>, the goal is to build streaks of consecutive tile activations.</p>
+            <p>For each consecutive tile you activate, you get +10 tokens.</p>
         </div>`,
 
         //streak 2//
-        `<div class ="game-header">Streak-O-Rama</div>
-        <p>After a successful hit, you’ll see the length of your current streak.</p>
+        `<div class ="game-header">Streak-O-Rama Rules</div>
+        <p>After each activation, you’ll see the length of your current streak.</p>
         <p>For instance, if you’ve activated the tile 3 times in a row, you'll see this message:</p>
         <div class ="outcome-container">
             <div class="status-text">Streak: 3</div>
         </div>`,
 
         //streak 3//
-        `<div class ="game-header">Streak-O-Rama</div>
-        <p>You'll earn 10 tokens for every consecutive tile you hit.</p>
-        <p>For instance, if you miss the tile after achieving a streak of 3, you'll see this message indicating that you earned 30 tokens:</p>
+        `<div class ="game-header">Streak-O-Rama Rules</div>
+        <p>Each time a streak ends, you'll see how many tokens you've earned.</p>
+        <p>For instance, if you miss the tile after activating 3 consecutive tiles, you'll see this message indicating that you earned 30 tokens:</p>
         <div class ="outcome-container">
             <div class="status-text">Final streak: 3</div>
             <div class="win-text">+30 tokens</div>
         </div>`,
 
+        //streak 4//
+        `<div class ="game-header">Streak-O-Rama Rules</div>
+        <p>If you miss the tile after after activating 1 tile, you'll see this message indicating that you earned 10 tokens:</p>
+        <div class ="outcome-container">
+            <div class="status-text">Final streak: 1</div>
+            <div class="win-text">+10 tokens</div>
+        </div>`,
+
+        //streak 5//
+        `<div class ="game-header">Streak-O-Rama Rules</div>
+        <p>If you miss the tile after activating no tiles, you'll see this message indicating that you earned 0 tokens:</p>
+        <div class ="outcome-container">
+            <div class="status-text">Final streak: 0</div>
+            <div class="lose-text">+0 tokens</div>
+        </div>`,
+
         //divider//
-        `<p>Continue to learn about the rules of Six Shooter</p>`,
+        `<p>Continue to learn about the rules of <strong>Six Shooter</strong></p>`,
+
 
 
         //one in six 1//
-        `<div class="heading">Six Shooter</div>
+        `<div class="game-header">Six Shooter Rules</div>
         <div class="outcome-container">
-            <p>Six Shooter is divided into rounds of 6 attempts.</p>
-            <p>Your goal is to win rounds.</p>
-            <p>To win a round, you must activate a tile before your six attempts are complete.</p>
-            <p>Press any key to continue.</p>
+            <p><strong>Six Shooter</strong> is divided into rounds of 6 attempts. The goal is to win rounds.
+            <p>To win a round, you must activate a tile before your 6 attempts are complete. For each round you win, you earn +10 tokens.</p>
         </div>`,
 
         //one in six 2//
-        `<div class ="game-header">Six Shooter</div>
-        <p>If you successfully hit a tile during the round, you will see this message indicating you won the round:</p>
+        `<div class ="game-header">Six Shooter Rules</div>
+        <p>If you activate a tile before the round ends, you'll see this message indicating you won the round:</p>
         <div class ="outcome-container">
             <div class="win-text">+10 tokens</div>
             <div class="status-text">Get ready for the next round!</div>
         </div>`,
 
         //one in six 3//
-        `<div class ="game-header">Six Shooter</div>
-        <p>Each time you fail to hit a tile within a round, you will see a message indicating how many attempts are remaining:</p>
+        `<div class ="game-header">Six Shooter Rules</div>
+        <p>Each time you miss a tile before the round ends, you'll see a message indicating how many attempts are remaining:</p>
         <div class ="outcome-container">
             <div class="status-text">Attempts remaining: 3</div>
-        </div>`,
+        </div>
+        <p>As soon as you receive your tokens, the current round ends and the next one begins.</p>`,
 
         //one in six 4//
-        `<div class ="game-header">Six Shooter</div>
-        <p>If you fail to hit a tile in six attempts, you will see this message indicating you lost the round:</p>
+        `<div class ="game-header">Six Shooter Rules</div>
+        <p>If you miss a tile 6 consecutive times, you'll see this message indicating you lost the round:</p>
         <div class ="outcome-container">
+            <div class="status-text-red">Attempts remaining: 0</div>
             <div class="lose-text">+0 tokens</div>
             <div class="status-text">Get ready for the next round!</div>
         </div>`,
@@ -178,9 +194,83 @@
     timeline.push(games);
 
 
+    //quiz on representations//
 
 
-    //quiz on representations -- UNFINISHED//
+    let quiz_loop_node = {
+      timeline: [
+        {
+          type: jsPsychSurveyMultiChoice,
+          questions: [
+            {
+              prompt: "What must you do to maximize your odds of winning a $100.00 bonus?",
+              options: ["Earn as many tokens as possible.", "Finish the game as quickly as possible."],
+              required: true,
+              name: "bonus_question"
+            },
+            {
+              prompt: "What key do you press to activate the tile?",
+              options: ["Enter", "Spacebar", "Shift"],
+              required: true,
+              name: "tile_key"
+            }
+          ],
+          on_finish: function(data) {
+            const responses = JSON.parse(data.responses);
+            const correctAnswers = {
+              bonus_question: "Earn as many tokens as possible.",
+              tile_key: "Spacebar"
+            };
+
+            let allCorrect = true;
+            for (let key in correctAnswers) {
+              if (responses[key] !== correctAnswers[key]) {
+                allCorrect = false;
+              }
+            }
+
+            data.correct = allCorrect; // This will be accessible in loop_function
+          }
+        }
+      ],
+      loop_function: function(data) {
+        const last_trial_data = data.values().pop();
+        if (last_trial_data.correct === true) {
+          return false;
+        } else {
+          alert("Oops! Some answers were incorrect. Please try again.");
+          return true;
+        }
+      }
+    };
+
+    var endMessage = {
+      type: jsPsychHtmlButtonResponse,
+      stimulus: `<p>Thank you for participating!</p><p>You have completed the quiz.</p>`,
+      choices: ['Finish']
+    };
+
+    timeline.push(quiz_loop_node);
+    timeline.push(endMessage);
+
+
+
+
+    var quizTrial = {
+      type: jsPsychHtmlButtonResponse,
+      stimulus: `<p>What must you do to maximize your odds of winning a $100.00 bonus?</p>`,
+      choices: [`Earn as many tokens as possible.`, `Finish the game as quickly as possible.`],
+      data: {
+        correct_response: 0 
+      },
+      on_finish: function(data) {
+        data.correct = data.response === 0;
+      }
+    };
+
+    timeline.push(quizTrial);
+
+
 
     var quiz_binary = {
         type:jsPsychSurveyMultiChoice,
@@ -205,6 +295,9 @@
 
     };
     timeline.push(quiz_binary)
+
+
+
 
     var quiz_streak = {
         type:jsPsychSurveyMultiChoice,
@@ -237,12 +330,12 @@
             {
                 prompt: "How do you earn tokens in Shot in Six?",
                 name: "onein6q1",
-                options: ["By hitting exactly 6 tiles the entire game.", "By hitting 1 tile in 6 or less tries."],
+                options: ["By activateting exactly 6 tiles the entire game.", "By activateting 1 tile in 6 or less tries."],
                 required: true
 
             },
             {
-                prompt: "If you hit a tile in 4 tries, what happens?",
+                prompt: "If you activate a tile in 4 tries, what happens?",
                 name: "onein6q2",
                 options: ["You continue to 6 tries.", "The round restarts at try 1."],
                 required: true
