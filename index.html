@@ -38,16 +38,16 @@
 
         //description//
         `<p>You'll be playing a game where you'll be competing for a chance to win a $100.00 bonus prize.</p>
-        <p>Specifically, during the game, you'll earn tokens. The tokens you earn will be entered into a lottery,<br>
-        and if one of your tokens is drawn, you'll win $100.00. The more tokens you earn, the more likely you'll be to win $100.00.</p>`,
+        <p>Specifically, during the game, you'll earn tokens. The tokens you earn will be entered into a lottery, 
+        and if one of your tokens is drawn, you'll win $100.00.<br>The more tokens you earn, the more likely you'll be to win $100.00.</p>`,
 
         //instructions 1//
         `<p>The game you'll play involves activating a gray tile.</p>
         <div class="outcome-container">
             <div class="gray-tile"></div>
         </div>
-        <p>The tile will appear on your screen, then quickly disappear. To activate it, you must press your SPACEBAR
-        before it disappears;<br>whenever you see the tile, you should press your SPACEBAR as fast as possible.</p>`,
+        <p>The tile will appear on your screen, then quickly disappear. To activate it, you must press your SPACEBAR before it disappears;
+        whenever you see the tile, you should press your SPACEBAR as fast as possible.</p>`,
 
         //instructions 2//
         `<p>If you activate the tile, it'll turn blue.</p>
@@ -70,14 +70,23 @@
     timeline.push(tile_intro);
     
     
+
+
+
+
     // Insert tile PRACTICE game //
+
+
+
+
+
 
 
     var games = {
         type:jsPsychInstructions,
         pages: [
         //intro games//
-        `<p>You'll play one of three different games. Each game involves activating the tile but with different rules. The games are:</p>
+        `<p>You'll play one of three different games.<br>Each game involves activating the tile but with different rules. The games are:</p>
             <div class="heading">
                 <p>1. One-Click Wonder</p>
                 <p>2. Streak-O-Rama</p>
@@ -108,7 +117,7 @@
         </div>`,
 
         //divider//
-        `<p>Continue to learn about the rules of <strong>Streak-O-Rama</strong></p>`,
+        `<p>Continue to learn about the rules of <strong>Streak-O-Rama</strong>.</p>`,
 
 
         //streak 1//
@@ -137,7 +146,7 @@
 
         //streak 4//
         `<div class ="game-header">Streak-O-Rama Rules</div>
-        <p>If you miss the tile after after activating 1 tile, you'll see this message indicating that you earned 10 tokens:</p>
+        <p>If you miss the tile after after activating 1 tile, you'll see this message indicating that<br>you earned 10 tokens:</p>
         <div class ="outcome-container">
             <div class="status-text">Final streak: 1</div>
             <div class="win-text">+10 tokens</div>
@@ -145,14 +154,14 @@
 
         //streak 5//
         `<div class ="game-header">Streak-O-Rama Rules</div>
-        <p>If you miss the tile after activating no tiles, you'll see this message indicating that you earned 0 tokens:</p>
+        <p>If you miss the tile after activating no tiles, you'll see this message indicating that<br>you earned 0 tokens:</p>
         <div class ="outcome-container">
             <div class="status-text">Final streak: 0</div>
             <div class="lose-text">+0 tokens</div>
         </div>`,
 
         //divider//
-        `<p>Continue to learn about the rules of <strong>Six Shooter</strong></p>`,
+        `<p>Continue to learn about the rules of <strong>Six Shooter</strong>.</p>`,
 
 
 
@@ -165,7 +174,7 @@
 
         //one in six 2//
         `<div class ="game-header">Six Shooter Rules</div>
-        <p>If you activate a tile before the round ends, you'll see this message indicating you won the round:</p>
+        <p>If you activate a tile before the round ends, you'll see this message<br>indicating you won the round:</p>
         <div class ="outcome-container">
             <div class="win-text">+10 tokens</div>
             <div class="status-text">Get ready for the next round!</div>
@@ -173,7 +182,7 @@
 
         //one in six 3//
         `<div class ="game-header">Six Shooter Rules</div>
-        <p>Each time you miss a tile before the round ends, you'll see a message indicating how many attempts are remaining:</p>
+        <p>Each time you miss a tile before the round ends, you'll see a message<br>indicating how many attempts are remaining:</p>
         <div class ="outcome-container">
             <div class="status-text">Attempts remaining: 3</div>
         </div>
@@ -196,156 +205,184 @@
 
     //quiz on representations//
 
-
-    let quiz_loop_node = {
-      timeline: [
-        {
-          type: jsPsychSurveyMultiChoice,
-          questions: [
-            {
-              prompt: "What must you do to maximize your odds of winning a $100.00 bonus?",
-              options: ["Earn as many tokens as possible.", "Finish the game as quickly as possible."],
-              required: true,
-              name: "bonus_question"
-            },
-            {
-              prompt: "What key do you press to activate the tile?",
-              options: ["Enter", "Spacebar", "Shift"],
-              required: true,
-              name: "tile_key"
-            }
-          ],
-          on_finish: function(data) {
-            const responses = JSON.parse(data.responses);
-            const correctAnswers = {
-              bonus_question: "Earn as many tokens as possible.",
-              tile_key: "Spacebar"
-            };
-
-            let allCorrect = true;
-            for (let key in correctAnswers) {
-              if (responses[key] !== correctAnswers[key]) {
-                allCorrect = false;
-              }
-            }
-
-            data.correct = allCorrect; // This will be accessible in loop_function
-          }
-        }
-      ],
-      loop_function: function(data) {
-        const last_trial_data = data.values().pop();
-        if (last_trial_data.correct === true) {
-          return false;
-        } else {
-          alert("Oops! Some answers were incorrect. Please try again.");
-          return true;
-        }
-      }
+    // Define correct answers
+    var correct_answers = {
+        'bonus-question': 'Earn as many tokens as possible.',
+        'one-click-wonder': 'By activating each individual tile.',
+        'streak-o-rama': 'By building streaks.',
+        'six-shooter': 'By winning rounds of 6 attempts.'
     };
 
-    var endMessage = {
-      type: jsPsychHtmlButtonResponse,
-      stimulus: `<p>Thank you for participating!</p><p>You have completed the quiz.</p>`,
-      choices: ['Finish']
-    };
-
-    timeline.push(quiz_loop_node);
-    timeline.push(endMessage);
-
-
-
-
-    var quizTrial = {
-      type: jsPsychHtmlButtonResponse,
-      stimulus: `<p>What must you do to maximize your odds of winning a $100.00 bonus?</p>`,
-      choices: [`Earn as many tokens as possible.`, `Finish the game as quickly as possible.`],
-      data: {
-        correct_response: 0 
-      },
-      on_finish: function(data) {
-        data.correct = data.response === 0;
-      }
-    };
-
-    timeline.push(quizTrial);
-
-
-
-    var quiz_binary = {
-        type:jsPsychSurveyMultiChoice,
-        preamble: "<p>To make sure you understand the One-Click Wonder game, please answer the following questions:",
+    // Quiz trial with all questions on one page
+    var quiz_trial = {
+        type: jsPsychSurveyMultiChoice,
+        preamble: '<div class="quiz-instructions">' +
+                 '<p>Please answer the following questions to ensure you understand the three games.</p>' +
+                 '</div>',
         questions: [
             {
                 prompt: "What must you do to maximize your odds of winning a $100.00 bonus?",
-                name: "binaryq1",
-                options: ["Earn as many tokens as possible.", "Finish the game as quickly as possible."],
+                name: 'bonus-question',
+                options: [
+                    'Earn as many tokens as possible.',
+                    'Finish the game as quickly as possible.'
+                ],
                 required: true
-
             },
             {
-                prompt: "How do you earn tokens in One-Click Wonder?",
-                name: "binaryq2",
-                options: ["By activating each individual tile.", "By building streaks."],
+                prompt: "How do you earn tokens in <span class='game-name'>One-Click Wonder</span>?",
+                name: 'one-click-wonder',
+                options: [
+                    'By activating each individual tile.',
+                    'By building streaks.',
+                    'By winning rounds of 6 attempts.'
+                ],
                 required: true
-
+            },
+            {
+                prompt: "How do you earn tokens in <span class='game-name'>Streak-O-Rama</span>?",
+                name: 'streak-o-rama',
+                options: [
+                    'By activating each individual tile.',
+                    'By building streaks.',
+                    'By winning rounds of 6 attempts.'
+                ],
+                required: true
+            },
+            {
+                prompt: "How do you earn tokens in <span class='game-name'>Six Shooter</span>?",
+                name: 'six-shooter',
+                options: [
+                    'By activating each individual tile.',
+                    'By building streaks.',
+                    'By winning rounds of 6 attempts.'
+                ],
+                required: true
             }
-
-        ]
-
+        ],
+        button_label: 'Submit Answers',
+        on_finish: function(data) {
+            // Check answers
+            var responses = data.response;
+            var all_correct = true;
+            var incorrect_count = 0;
+            
+            for (var question in correct_answers) {
+                if (responses[question] !== correct_answers[question]) {
+                    all_correct = false;
+                    incorrect_count++;
+                }
+            }
+            
+            // Store results in data
+            data.all_correct = all_correct;
+            data.incorrect_count = incorrect_count;
+            data.total_questions = Object.keys(correct_answers).length;
+        }
     };
-    timeline.push(quiz_binary)
 
-
-
-
-    var quiz_streak = {
-        type:jsPsychSurveyMultiChoice,
-        preamble: "<p>To make sure you understand the Streak-O-Rama game, please answer the following questions:",
+    // Feedback trial that shows results and loops if needed
+    var feedback_trial = {
+        type: jsPsychSurveyMultiChoice,
+        preamble: function() {
+            var last_trial_data = jsPsych.data.get().last(1).values()[0];
+            
+            if (last_trial_data.all_correct) {
+                return '<div class="feedback correct-feedback">' +
+                       'All answers correct! You may now proceed to the games.' +
+                       '</div>' +
+                       '<div class="quiz-instructions">' +
+                       '<p>Please answer the following questions to ensure you understand the three games.</p>' +
+                       '</div>';
+            } else {
+                var correct_count = last_trial_data.total_questions - last_trial_data.incorrect_count;
+                return '<div class="feedback incorrect-feedback">' +
+                       'You got ' + correct_count + ' out of ' + last_trial_data.total_questions + ' questions correct. ' +
+                       'Please answer all questions correctly to proceed.' +
+                       '</div>' +
+                       '<div class="quiz-instructions">' +
+                       '<p>Please answer the following questions to ensure you understand all three games.</p>' +
+                       '</div>';
+            }
+        },
         questions: [
             {
-                prompt: "How do you earn tokens in Streak-O-Rama?",
-                name: "streakq1",
-                options: ["By activating each individual tile.", "By building streaks."],
+                prompt: "What must you do to maximize your odds of winning a $100.00 bonus?",
+                name: 'bonus-question',
+                options: [
+                    'Earn as many tokens as possible.',
+                    'Finish the game as quickly as possible.'
+                ],
                 required: true
-
             },
             {
-                prompt: "What happens if you lose your streak?",
-                name: "streakq2",
-                options: ["You lose all your tokens and restart from 0.", "You do not lose any tokens."],
+                prompt: "How do you earn tokens in <span class='game-name'>One-Click Wonder</span>?",
+                name: 'one-click-wonder',
+                options: [
+                    'By activating each individual tile.',
+                    'By building streaks.',
+                    'By winning rounds of 6 attempts.'
+                ],
                 required: true
-
-            }
-
-        ]
-
-    };
-    timeline.push(quiz_streak)
-
-    var quiz_onein6 = {
-        type:jsPsychSurveyMultiChoice,
-        preamble: "<p>To make sure you understand the Shot in Six game, please answer the following questions:",
-        questions: [
-            {
-                prompt: "How do you earn tokens in Shot in Six?",
-                name: "onein6q1",
-                options: ["By activateting exactly 6 tiles the entire game.", "By activateting 1 tile in 6 or less tries."],
-                required: true
-
             },
             {
-                prompt: "If you activate a tile in 4 tries, what happens?",
-                name: "onein6q2",
-                options: ["You continue to 6 tries.", "The round restarts at try 1."],
+                prompt: "How do you earn tokens in <span class='game-name'>Streak-O-Rama</span>?",
+                name: 'streak-o-rama',
+                options: [
+                    'By activating each individual tile.',
+                    'By building streaks.',
+                    'By winning rounds of 6 attempts.'
+                ],
                 required: true
-
+            },
+            {
+                prompt: "How do you earn tokens in <span class='game-name'>Six Shooter</span>?",
+                name: 'six-shooter',
+                options: [
+                    'By activating each individual tile.',
+                    'By building streaks.',
+                    'By winning rounds of 6 attempts.'
+                ],
+                required: true
             }
-
-        ]
-
+        ],
+        button_label: 'Submit Answers',
+        on_finish: function(data) {
+            // Check answers
+            var responses = data.response;
+            var all_correct = true;
+            var incorrect_count = 0;
+            
+            for (var question in correct_answers) {
+                if (responses[question] !== correct_answers[question]) {
+                    all_correct = false;
+                    incorrect_count++;
+                }
+            }
+            
+            // Store results in data
+            data.all_correct = all_correct;
+            data.incorrect_count = incorrect_count;
+            data.total_questions = Object.keys(correct_answers).length;
+        }
     };
-    timeline.push(quiz_onein6)
+
+    // Quiz loop - repeats until all answers are correct
+    var quiz_loop = {
+        timeline: [quiz_trial],
+        loop_function: function(data) {
+            var last_trial = data.values().slice(-1)[0];
+            if (!last_trial.all_correct) {
+                // Replace the trial with feedback version for next iteration
+                quiz_loop.timeline = [feedback_trial];
+                return true;
+            }
+            return false;
+        }
+    };
+    timeline.push(quiz_loop);
+
+
 
     //pick a representation//
     
@@ -353,19 +390,30 @@
         type:jsPsychSurveyMultiChoice,
         questions: [
             {
-                prompt: "Which game would you like to play?",
-                name: "format",
+                prompt: "Based on what you have learned, which game would you like to play?<br>The game will start on the next page.",
+                name: "game-choice",
                 options: ["One-Click Wonder", "Streak-O-Rama", "Shot in Six"],
                 required: true
 
             }
 
-        ]
-
+        ],
     };
     timeline.push(choose_rep)
 
+
+
+
+
+
+
+
     //insert REAL game//
+
+
+
+
+
 
 
     //*start the experiment//
