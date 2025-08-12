@@ -2,17 +2,21 @@
 <html>
   <head>
     <title>My experiment</title>
+    <script src="./js/matter.js"></script>
     <script src="https://unpkg.com/jspsych@8.2.1"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.1.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-instructions@1.1.4"></script>
     <script src="https://unpkg.com/@jspsych/plugin-survey-multi-choice@1.1.3"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-button-response@2.1.0"></script>
+    <script src="./js/dmPsych.js"></script>
     <link href="./jspsych.css" rel="stylesheet" type="text/css" />
   </head>
   <body></body>
   <script>
     // variable to initialize jsPsych//
     var jsPsych = initJsPsych();
+
+    const hitRate = .5
 
     //create timeline//
     var timeline = [];
@@ -201,6 +205,26 @@
         ],
         show_clickable_nav: true
     };
+
+    const tileHit_1 = `<div class="outcome-container-dm">
+                            <div class="header">{header}</div>
+                            <div class="box" style="background-color:blue"></div>
+                        </div>`;
+
+    const tileHit_2 = `<div class="outcome-container-dm">
+                            <div class="header">{header}</div>
+                            <div class="box" style="background-color:blue"></div>
+                        </div>`;
+
+    const tileMiss = `<div class="outcome-container-dm">
+                            <div class="header">{header}</div>
+                            <div class="box" style="background-color:white"></div>
+                        </div>`;
+
+    const tilePractice = new dmPsych.MakeTileGame('blue', tileHit_1, tileMiss, 6, 'bern', 10, hitRate, 'practice', 1);
+
+    timeline.push(tilePractice);
+
     timeline.push(games);
 
 
@@ -422,8 +446,16 @@
             }
 
         ],
+        on_finish: function(data) {
+            const choice = data.response["game-choice"];
+            const choiceCode = (choice == "One-Click Wonder") ? "bern" : (choice == "Streak-O-Rama") ? "strk" : "1inN";
+            const playGame = new dmPsych.MakeTileGame('blue', tileHit_1, tileMiss, 6, choiceCode, 20, hitRate, 'tileGame', 2);
+            timeline.push(playGame);
+        },
     };
-    timeline.push(choose_rep)
+    timeline.push(choose_rep);
+    
+
 
 
 

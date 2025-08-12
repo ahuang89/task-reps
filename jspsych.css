@@ -634,3 +634,155 @@
 .game-name {
     font-weight: bold;
 }
+
+
+.rewardimg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+
+.parent {
+  position: relative;
+  width: 975px;
+  height: 390px;
+}
+
+.box{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  margin: -100px 0 0 -100px;
+}
+
+.green-span {
+  font-weight: bold;
+  color: #00aa00;
+}
+
+.gray-span {
+  font-weight: bold;
+  color: #444444;
+}
+
+.red-span {
+  font-weight: bold;
+  color: #cf0000;
+}
+
+.token-image {
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    width: 100%;
+}
+
+.token-text-win {
+    position: absolute; 
+    font-size: 70px;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    width: 100%;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000;
+}
+
+.token-text-lose {
+    position: absolute; 
+    font-size: 70px;
+    color: #a9a9a9;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    width: 100%;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000;
+}
+
+.bonus-text {
+    position: absolute; 
+    font-size: 70px;
+    color: yellow;
+    top: 70%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    width: 100%;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000;
+}
+
+.penalty-text {
+    position: absolute; 
+    font-size: 70px;
+    color: red;
+    top: 70%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    width: 100%;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000;
+}
+
+.header-win {
+    position: absolute; 
+    font-size: 40px;
+    top: 10%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    width: 100%;
+    text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000;
+}
+
+.header-lose {
+    position: absolute; 
+    font-size: 40px;
+    color: #a9a9a9;
+    top: 10%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    width: 100%;
+    text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000;
+}
+
+.header {
+    position: absolute; 
+    font-size: 35px;
+    color: black;
+    top: 10%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    width: 100%;
+}
+
+.iti-text {
+    position: absolute; 
+    font-size: 60px;
+    color: black;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    width: 100%;
+}
+
+.warning-text {
+    position: absolute; 
+    font-size: 20px;
+    color: black;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    width: 100%;
+}
+
+.outcome-container-dm {
+    position: relative; 
+    text-align: center; 
+    width: 800px; 
+    height: 600px;
+    color: black; 
+}
