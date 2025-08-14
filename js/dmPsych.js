@@ -555,12 +555,10 @@ const dmPsych = (function() {
 
     // second half
     let winArray2 = Array(nWinsPerHalf).fill(750);
-    let lossArray2 = Array(nLossPerHalf - 1).fill(200);
+    let lossArray2 = Array(nLossPerHalf).fill(200);
     let concatArray2 = winArray2.concat(lossArray2);
     let shuffledArray2 = jsPsych.randomization.repeat(concatArray2, 1);
-    shuffledArray2.push(200);
     rtArray.push(...shuffledArray2);
-
     return rtArray;
 
   };

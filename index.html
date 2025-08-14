@@ -16,7 +16,7 @@
     // variable to initialize jsPsych//
     var jsPsych = initJsPsych();
 
-    const hitRate = [.1, .9][Math.random(Math.floor() * 2)];
+    const hitRate = [.1, .9][Math.floor(Math.random() * 2)];
 
     jsPsych.data.addProperties({
         hitRate: hitRate,
