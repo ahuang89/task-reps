@@ -16,7 +16,11 @@
     // variable to initialize jsPsych//
     var jsPsych = initJsPsych();
 
-    const hitRate = .5
+    const hitRate = [.1, .9][Math.random(Math.floor() * 2)];
+
+    jsPsych.data.addProperties({
+        hitRate: hitRate,
+    });
 
     //create timeline//
     var timeline = [];
@@ -221,7 +225,7 @@
                             <div class="box" style="background-color:white"></div>
                         </div>`;
 
-    const tilePractice = new dmPsych.MakeTileGame('blue', tileHit_1, tileMiss, 6, 'bern', 12, hitRate, 'practice', 1);
+    const tilePractice = new dmPsych.MakeTileGame('blue', tileHit_1, tileMiss, 6, 'bern', 20, hitRate, 'practice', 1);
 
     timeline.push(tilePractice);
 
