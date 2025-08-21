@@ -15,11 +15,33 @@
   <body></body>
   <script>
     // variable to initialize jsPsych//
-    var jsPsych = initJsPsych();
+
+    var jsPsych = initJsPsych({
+        on_finish: () => {
+            let boot = null;
+            if(!boot) {
+                document.body.innerHTML = 
+                `<div align='center' style="margin: 10%">
+                    <p>Thank you for participating!</p>
+                    <p><b>To receive payment, please wait while we redirect you to Prolific.</b></p>
+                </div>`;
+                setTimeout(() => { location.href = `https://app.prolific.co/submissions/complete?cc=${completionCode}` }, 4000);
+            }
+        },
+    });
+
+    let subject_id = jsPsych.data.getURLVariable("PROLIFIC_PID");
+    if (!subject_id) subject_id = jsPsych.randomization.randomID(10);
+    // define file name
+    const filename = `${subject_id}.csv`;
+
+    // define completion code for Prolific
+    const completionCode = "C7A869A0";
 
     const hitRate = [.1, .9][Math.floor(Math.random() * 2)];
 
     jsPsych.data.addProperties({
+        subject: subject_id,
         hitRate: hitRate,
     });
 
