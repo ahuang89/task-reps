@@ -8,6 +8,7 @@
     <script src="https://unpkg.com/@jspsych/plugin-instructions@1.1.4"></script>
     <script src="https://unpkg.com/@jspsych/plugin-survey-multi-choice@1.1.3"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-button-response@2.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-text@1.1.3"></script>
     <script src="./js/dmPsych.js"></script>
     <link href="./jspsych.css" rel="stylesheet" type="text/css" />
   </head>
@@ -24,6 +25,8 @@
 
     //create timeline//
     var timeline = [];
+
+    /*
 
     //define welcome message//
     var welcome = {
@@ -88,6 +91,7 @@
 
 
 
+*/
 
 
 
@@ -192,7 +196,7 @@
         `<div class ="game-header">Six Shooter: Rules</div>
         <p>If you miss the tile 6 consecutive times, you'll see this message indicating you lost the round:</p>
         <div class ="outcome-container">
-            <div class="status-text-red">Attempts remaining: 0</div>
+            <div class="status-text-gray">Attempts remaining: 0</div>
             <div class="lose-text">+0 tokens</div>
             <div class="status-text">Get ready for the next round!</div>
         </div>`,
@@ -435,10 +439,85 @@
     timeline.push(quiz_loop);
 
 
+    var startGame = {
+        type: jsPsychInstructions,
+        pages: [
+            `<p>Get ready to play!</p>`
+        ],
+        show_clickable_nav: true
+    };
 
-    //pick a representation//
+    //define demographic survey//
 
-    let playGame;
+    var demographics = {
+      type: jsPsychSurveyMultiChoice,
+      preamble: `<p>Great job! Now, please fill out this short demographic survey.</p>
+                 <p>This information will be kept confidential and will only be used for research purposes.</p>`,
+      questions: [
+        {
+          prompt: "What is your gender?",
+          name: "gender",
+          options: ["Female", "Male", "Other"],
+          required: false
+        },
+        {
+          prompt: "What is your age group?",
+          name: "age",
+          options: [
+            "Under 18",
+            "18–24",
+            "25–34",
+            "35–44",
+            "45–54",
+            "55+"
+          ],
+          required: false
+        },
+        {
+          prompt: "What is race / ethnicity?",
+          name: "race",
+          options: [
+            "White / Caucasian",
+            "Black / African American",
+            "East Asian (e.g., Chinese, Korean, Vietnamese, etc.)",
+            "South Asian (e.g., Indian, Pakistani, Sri Lankan, etc.)",
+            "Latino / Hispanic",
+            "Middle Eastern / North African",
+            "Indigenous / First Nations",
+            "Bi-racial",
+            "Other"
+          ],
+          required: false
+        },
+        {
+          prompt: "Is English your native language?",
+          name: "english",
+          options: [
+            "Yes",
+            "No"
+          ],
+          required: false
+        }
+
+      ]
+    };
+
+    //define thank you / feedback message//
+
+    var feedback_page = {
+      type: jsPsychSurveyText,
+      preamble: `<p>Thank you for completing the study!</p>`,
+      questions: [
+        {
+          prompt: "Questions? Comments? Complaints? Provide your feedback here.",
+          name: "feedback",
+          placeholder: "Type your response here...",
+          rows: 10,
+          columns: 100,
+          required: false
+        }
+      ]
+    };
     
     var choose_rep = {
         type:jsPsychSurveyMultiChoice,
@@ -455,8 +534,8 @@
         on_finish: function(data) {
             const choice = data.response["game-choice"];
             const choiceCode = (choice == "One-Click Wonder") ? "bern" : (choice == "Streak-O-Rama") ? "strk" : "1inN";
-            playGame = new dmPsych.MakeTileGame('blue', tileHit_1, tileMiss, 6, choiceCode, 20, hitRate, 'tileGame', 2);
-            timeline.push(playGame);
+            const playGame = new dmPsych.MakeTileGame('blue', tileHit_1, tileMiss, 6, choiceCode, 20, hitRate, 'tileGame', 2);
+            timeline.push(...[startGame, playGame, demographics, feedback_page]);
         },
     };
     timeline.push(choose_rep);

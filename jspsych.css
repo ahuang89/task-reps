@@ -544,34 +544,33 @@
 }
 
 .win-text {
-    font-size: 48px;
-    color: green;
-    text-shadow: 1px 1px 2px black; /* subtle black outline */
-    font-weight: bold;
-    margin: 15px 0;
+    font-size: 70px;
+    color: blue;
     text-align: center;
+    font-weight: bold;
+    margin: 20px 0;
+    text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000;
 }
 
 .lose-text {
-    font-size: 48px;
-    color: darkgray;
-    text-shadow: 1px 1px 2px black; /* subtle black outline */
-    font-weight: bold;
-    margin: 15px 0;
+    font-size: 70px;
+    color: #a9a9a9;
     text-align: center;
+    font-weight: bold;
+    margin: 20px 0;
+    text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000;
 }
 
 .status-text {
-    font-size: 24px;
-    color: #333;
-    font-weight: 600;
+    font-size: 35px;
+    color: black;
     margin: 15px 0;
     text-align: center;
 }
 
-.status-text-red {
+.status-text-gray {
     font-size: 24px;
-    color: red;
+    color: gray;
     font-weight: 600;
     margin: 15px 0;
     text-align: center;
