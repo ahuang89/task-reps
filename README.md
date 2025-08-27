@@ -2,7 +2,7 @@
 
 <strong>Overview:</strong>
 
-This experiment investigates how participants naturally form internal task representations based on task success (hit rate). Participants will play a simple tile-activation game and are asked to report their understanding and strategy. The study examines whether performance outcomes influence the way participants conceptualize and perform the task.
+This experiment investigates how participants naturally form internal task representations based on task success (hit rate). Participants will play a simple tile-activation game and are asked to report their understanding and representation choice. The study examines whether success rate influences the way participants choose to conceptualize the task.
 
 <strong>Study Design:</strong>
 
