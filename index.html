@@ -50,7 +50,6 @@
     //create timeline//
     var timeline = [];
 
-    
 
     //define welcome message//
     var welcome = {
@@ -496,8 +495,14 @@
           options: ["Yes", "No"],
           required: false
         }
-      ]
+      ],
+      on_finish: function(data) {
+            data.gender = data.response.gender;
+            data.race = data.response.race;
+            data.english = data.response.english;
+        }
     };
+
 
     var age = {
       type: jsPsychSurveyText,
@@ -509,8 +514,12 @@
           input_type: 'number',
           required: false
         }
-      ]
+      ],
+      on_finish: function(data) {
+        data.age = data.response.age;
+      }
     };
+
     const save_data = {
       type: jsPsychPipe,
       action: "save",
