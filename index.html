@@ -552,7 +552,14 @@
     };
     timeline.push(choose_rep);
     
-
+    const save_data = {
+      type: jsPsychPipe,
+      action: "save",
+      experiment_id: "kuo6q0nhW0KV",
+      filename: filename,
+      data_string: ()=>jsPsych.data.get().csv()
+    };
+    timeline.push (save_data);
 
 
 
