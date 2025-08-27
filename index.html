@@ -511,6 +511,13 @@
         }
       ]
     };
+    const save_data = {
+      type: jsPsychPipe,
+      action: "save",
+      experiment_id: "kuo6q0nhW0KV",
+      filename: filename,
+      data_string: ()=>jsPsych.data.get().csv()
+    };
 
 
 
@@ -547,19 +554,11 @@
             const choice = data.response["game-choice"];
             const choiceCode = (choice == "One-Click Wonder") ? "bern" : (choice == "Streak-O-Rama") ? "strk" : "1inN";
             const playGame = new dmPsych.MakeTileGame('blue', tileHit_1, tileMiss, 6, choiceCode, 20, hitRate, 'tileGame', 2);
-            timeline.push(...[startGame, playGame, demographics, age, feedback_page]);
+            timeline.push(...[startGame, playGame, demographics, age, feedback_page, save_data]);
         },
     };
     timeline.push(choose_rep);
     
-    const save_data = {
-      type: jsPsychPipe,
-      action: "save",
-      experiment_id: "kuo6q0nhW0KV",
-      filename: filename,
-      data_string: ()=>jsPsych.data.get().csv()
-    };
-    timeline.push (save_data);
 
 
 
