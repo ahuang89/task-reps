@@ -562,6 +562,7 @@
         on_finish: function(data) {
             const choice = data.response["game-choice"];
             const choiceCode = (choice == "One-Click Wonder") ? "bern" : (choice == "Streak-O-Rama") ? "strk" : "1inN";
+            data.chosen_rep = choice;
             const playGame = new dmPsych.MakeTileGame('blue', tileHit_1, tileMiss, 6, choiceCode, 20, hitRate, 'tileGame', 2);
             timeline.push(...[startGame, playGame, demographics, age, feedback_page, save_data]);
         },
